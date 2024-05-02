@@ -66,7 +66,7 @@ app.get("/postsSorted", postController.getAllSorted);
 
 app.patch("/addComment/:id", postController.comment);
 
-app.listen(process.env.POET || 3001, (err) => {
+app.listen(process.env.PORT || 3001, (err) => {
   if (err) {
     return console.log(err);
   }
