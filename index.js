@@ -11,9 +11,7 @@ import { userController, postController } from "./controllers/index.js";
 import { checkAuth, handleValidationErrors } from "./utils/index.js";
 
 mongoose
-  .connect(
-    "mongodb+srv://absadykov05:wwwwww@cluster0.mn5tbx0.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB ok"))
   .catch((err) => console.log("DB error", err));
 
@@ -66,10 +64,9 @@ app.get("/tags/:tag", postController.getOneTag);
 
 app.get("/postsSorted", postController.getAllSorted);
 
-
 app.patch("/addComment/:id", postController.comment);
 
-app.listen(3001, (err) => {
+app.listen(process.env.POET || 3001, (err) => {
   if (err) {
     return console.log(err);
   }
